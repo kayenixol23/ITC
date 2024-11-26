@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Senatorial Candidates 2025</title>
+  <style>
+    /* General Body and Layout */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url(flag\ ss.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      align-items: left; /* Horizontally center the content */
+    }
+
+    /* Navigation */
+    nav {
+      background-color: #333;
+      padding: 10px;
+      color: white;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 20px 20px;
+      margin: 0 10px;
+      border-radius: 10px;
+    }
+
+    nav a:hover {
+      background-color: #555;
+    }
+
+    /* Header (Home Section) - Make it Full Width and Full Height */
+    header {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url(congress.jpg);
+      padding: 20px;
+      text-align: center;
+      width: 100vw;  /* Full width */
+      height: 100vh; /* Full height */
+      display: flex; /* Flexbox to center text */
+      flex-direction: column;
+      justify-content: center; /* Vertically center the content */
+      align-items: center; /* Horizontally center the content */
+      box-sizing: border-box;
+      margin: 0;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3rem; /* Make the title bigger */
+      color: white;
+      font-size: 100px;
+    }
+
+    header p {
+      font-size: 1.5rem;
+      margin-top: 10px;
+      color: white;
+      font-size: 40px;
+    }
+
+    /* Flexbox container for Senators */
+    .senators-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 10px;
+    }
+
+    .senator-card {
+      background-color: white;
+      border-radius: 10px;
+      width: 250px;
+      height: auto;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .senator-card:hover {
+      transform: scale(1.05);
+    }
+
+    .senator-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      transition: all 0.3s ease;
+    }
+
+    .senator-card h3 {
+      text-align: center;
+      font-size: 1.3rem;
+      padding: 10px 0;
+      margin: 0;
+      background-color: #06598d;
+      color: white;
+    }
+
+    .senator-card .info {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .senator-card .info p {
+      display: none;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      color: #555;
+    }
+
+    .senator-card .see-more {
+      margin-top: 10px;
+      display: block;
+      color: #0044cc;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    /* When See More is clicked, expand the entire card */
+    .senator-card.expanded {
+      width: 80vw;  /* Take up 80% of the viewport width */
+      height: 80vh; /* Take up 80% of the viewport height */
+      z-index: 1000; /* Make sure it's above other cards */
+      position: fixed; /* Make it fixed so it stays in place when scrolling */
+      top: 50%; /* Center the card vertically */
+      left: 50%; /* Center the card horizontally */
+      transform: translate(-50%, -50%); /* Precisely center it */
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      display: flex; /* Use Flexbox for horizontal layout */
+      flex-direction: row; /* Side-by-side layout */
+      align-items: center;
+    }
+
+    /* Image inside the expanded card */
+    .senator-card.expanded img {
+      height: 100%; /* Make the image cover the full height of the expanded card */
+      width: 40%;  /* Image takes up 40% of the card width */
+      object-fit: cover;  /* Ensure the image covers the card properly */
+      margin-right: 20px;  /* Add some space between the image and text */
+    }
+
+    /* Text info in the expanded card */
+    .senator-card.expanded .info {
+      width: 60%; /* Text takes up 60% of the expanded card width */
+      padding: 20px;
+      text-align: left; /* Align the text to the left */
+    }
+
+    .senator-card.expanded .info p {
+      display: block; /* Show the full text when expanded */
+      color: #333;
+    }
+
+
+    /* Footer Styles */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #06598d;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 14px;
+      z-index: 1000;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .senators-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .senator-card {
+        width: 80%;
+      }
+
+      .partylist-container {
+        flex-direction: column;
+      }
+
+      .partylist-card {
+        width: 80%;
+        margin-bottom: 10px;
+      }
+    }
+
+    .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #a8a8a8;
+  color: white;
+  font-size: 1.5rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: none; /* Hidden by default */
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.close-button:hover {
+  background-color: #555;
+}
+
+/* Show Close Button When the Card is Expanded */
+.senator-card.expanded .close-button {
+  display: flex; /* Show the button only when the card is expanded */
+}
+  </style>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2025 Senatorial Election</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Official website for the 2025 Senatorial Election. Meet the candidates and learn more about their platforms.">
+  <meta name="keywords" content="2025 Senatorial Election, senators, elections, candidates, vote wisely">
+  <meta name="author" content="Senators Candidacy Team">
+  <meta name="robots" content="index, follow">
+</head>
+
+</head>
+<body>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#senators">Senators</a>
+    <a href="#About us">About us</a>
+  </nav>
+
+  <header id="home">
+    <h1>2025 Senatorial Election</h1>
+    <p>The 2025 Philippine Senate election will be the 35th election of members to the Senate of the Philippines.</p>
+  </header>
+
+  <section id="About us" class="About us">
+    <!-- Partylist cards go here -->
+  </section>
+
+  <footer class="footer">
+    All Rights Reserved: Senators Candidacy for 2025
+  </footer>
+
+  <section id="senators" class="senators-container">
+    <!-- Senator Card 1 -->
+    <div class="senator-card">
+      <img src="Abalos, Benjamin Jr. “Benhur” De Castro.png" alt="Senator Portrait">
+      <h3>Abalos, Benjamin Jr. “Benhur” De Castro</h3>
+      <div class="info">
+        <p>Party-List: Partido Federal ng Pilipinas        </p>
+        <p>Educational Background: 
+          Bachelor of Arts in History and Political  Science - De la Salle University
+          Bachelor of Laws - Ateneo  de Manila University                </p>
+          <p>As a Government Official:
+            City Mayor of Mandaluyong - 1995-1998
+            Mayor of Mandaluyong - 1998-2004 and 2007-2016
+            Congressman, Lone District of Mandaluyong - 2004-2007
+            Chairman in Metropolitan Manila Development Authority (MMDA) - 2021-2022
+            Secretary in Department of the Interior and Local Government (DILG) - 2022-2024                </p>
+            <p>Publications/Awards: 
+              2015 Seal of Child Friendly Local Governance - January 2016
+              Population and Development Award - October 2015
+              Communication Excellence in Organizations Award - October 2015
+              Seal of Good Local Governance -  September 2015
+              Gawad Parangal Award - April 2015
+              Improving the Delivery of Public Services Award -  July 2015
+              Outstanding Programs for Children - October 2014
+              Consistent Regional Outstanding Winner in Nutrition (CROWN) Awardee - November 2013
+              National Kabalikat Award Trophy - August 2013
+              Most Business Friendly City in the Philippines - October 2013
+              Galing Pook Awards for Outstanding Local Governance Programs - March 2013                  </p>
+        <a href="#" class="see-more">View Details</a> <!-- Changed text -->      </div>
+        <div class="close-button">X</div>
+
+    </div>
+
+    <!-- Senator Card 2 -->
+    <div class="senator-card">
+      <img src="Adonis, Ronaldo Mangampo.png" alt="Senator Portrait">
+      <h3>Adonis, Ronaldo Mangampo</h3>
+      <div class="info">
+        <p>Party-List: Makabayang Koalisyon ng Mamamayan</p>
+
+          <p> Background: NO DATA
+          As a Government Official: NO DATA
+          Publications/Awards: NO DATA.</p>
+        <a href="#" class="see-more">View Details</a> <!-- Changed text -->      </div>
+        <div class="close-button">X</div>
+    </div>
+
+    <div class="senator-card">
+        <img src="Amad, Wilson Caritero.png" alt="Senator Portrait">
+        <h3>Amad, Wilson Caritero</h3>
+        <div class="info">
+          <p>Party-List: Independent</p>
+           <p> Educational Background: 
+            Masters of Arts in Theology, Moral Theology - Saint John Vianney Theological Seminary
+            As a Government Official: NO DATA
+            Publications/Awards: NO DATA
+            Experiences: 
+            Spokesman - Plaridel Higaonon Tribal Council
+            Advocates in Good Governance
+            Volunteer Labor Organizer - Helping abused workers in their labor problem</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+  </div>
+
+      <div class="senator-card">
+        <img src="Andamo, Jocelyn Santos.png" alt="Senator Portrait">
+        <h3>Andamo, Jocelyn Santos </h3>
+        <div class="info">
+          <p>Party-List: Makabayang Koalisyon ng Mamamayan</p>
+           <p> Educational Background: NO DATA
+            As a Government Official: NO DATA
+            Publications/Awards: NO DATA</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>\
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Aquino, Paolo Benigno “Bam” Aguirre.png" alt="Senator Portrait">
+        <h3>Aquino, Paolo Benigno “Bam” Aguirre </h3>
+        <div class="info">
+          <p>Party-List: Katipunan ng Nagkakaisang Pilipino</p>
+            <p>Educational Background: 
+            Degree in Management Engineering - Ateneo De Manila University
+            Executive Education Program on Public Policy and Leadership - Kennedy School of Government 
+            As a Government Official: 
+            Senator in Senate of the Republic of the Philippines (July 2016-Present)
+            Chairman in National Youth Commission (2003-2006)
+            Commissioner in National Youth Commission (2001-2003)
+            Publications/Awards: 
+            Ten Outstanding Young Persons (2012)
+            GoNegosyo Inspiring Young Entrepreneur (2010)
+            Asia21 Young Leader
+            Founder, The Hapinoy Program
+            Founding member & Const’l Chairman, Nat’l Union of Catholic Student Councils
+            Jose Rizal Most Outstanding Model Student of the Philippines (1999)
+            Young Global Leader and Schwab Foundation Social Entrepreneur of the Year, World Economic Forum
+            Entrepreneur of the Year Finalist, Ernst & Young</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div> 
+
+      <div class="senator-card">
+        <img src="Arambulo, Ronnel Gondraneos.png" alt="Senator Portrait">
+        <h3>Arambulo, Ronnel Gondraneos </h3>
+        <div class="info">
+          <p>Party-List: Makabayang Koalisyon ng Mamamayan</p>
+          <p>  Educational Background: NO DATA
+            As a Government Official: 
+            Vice Chairperson of the PAMALAKAYA (Pambansang Lakas ng Kilusang Mamamalakaya ng Pilipinas)
+            Publications/Awards: NO DATA</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Arellano, Ernesto Rillera.png" alt="Senator Portrait">
+        <h3>Arellano, Ernesto Rillera </h3>
+        <div class="info">
+          <p>Party-List: Kamalayang Kayumanggi (Katipunan)</p>
+            <p>  Educational Background: 
+            Bachelor of Laws - University of the Cordilleras
+            Bachelor of Arts in Political Science - University of the Cordilleras High School Naguilian Academy
+            As a Government Official: NO DATA
+            Affiliations:
+            National Confederation of Labor (NCL) - Founding President
+            National Federation of Labor (NFL) - Founding Manila Regional Director and President Emeritus
+            Legal Advocates for Workers’ Interest (LAWIN) - Founder and Chief Legal Counsel
+            Kilusang Mayo Uno - Founding General Secretary
+            Katipunan ng mga Samahan ng Manggagawa (KASAMA) - Honorary President
+            Katipunan ng Kamalayang Kayumanggi - National Political Officer
+            Katipunan ng Maralitang Pilipino - Chief Legal Counsel
+            Publications/Awards: NO DATA</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Ballon, Roberto Amido.png" alt="Senator Portrait">
+        <h3>Ballon, Roberto Amido </h3>
+        <div class="info">
+          <p>Party-List: Independent</p>
+            <p> Educational Background: NO DATA
+            As a Government Official: NO DATA
+            Publications/Awards: 
+            Gawad Saka Award - 2003 and 2004
+            Department of Agriculture’s National Gawad Saka Award - 2005
+            Most Outstanding Fisherfolk - 2006
+            Most Outstanding Fisherfolk Organization Leader - 2011
+            National Gawad Natatanging Parangal - 2019</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Binay, Mar-Len Abigail “Abby” Sombillo.png" alt="Senator Portrait">
+        <h3>Binay, Mar-Len Abigail “Abby” Sombillo</h3>
+        <div class="info">
+          <p>Party-List: Nationalist People’s Coalition</p>
+            <p>  Educational Background: 
+            Degree in Human Ecology - University of the Philippines - Los Banos in 1997
+            Law Degree - Ateneo de Manila University in 2001
+            As a Government Official: 
+            Mayor of Makati City - 2016-Present
+            Congress (Representative) of the 2nd District of Makati - 2007 to 2016
+            Publications/Awards: 
+            Asia’s Most Influential PH - 2021 to 2023
+            Efficient Government World Smart Sustainable Cities Organization (WeGO) Awards (Bronze)
+            Outstanding Local Chief Executive
+            Medalya ng Pambihirang Paglilingkod - Degree of Lakan Award - 2018
+            Outstanding Government Workers - 2021
+            Makati Health Plus (Yellow Card)
+            Makati PWD Program
+            Makati Scholarship Program
+            Makati Urban Gardening Program
+            Makati Business-Friendly Initiatives
+            Makati Social Welfare Services
+            Makati Disaster Risk Reduction and Management Program
+            Makati Road Infrastructure and Traffic Management
+            Makati Public Housing Programs
+            Makati Digital Transformation
+            Makati Environmental Programs
+            Makati Police and Security Initiatives</p>
+          <a href="#" class="see-more">View Details</a>       </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Bondoc, James Patrick “Jimmy” Romero.png" alt="Senator Portrait">
+        <h3>Bondoc, James Patrick “Jimmy” Romero </h3>
+        <div class="info">
+          <p>Party-List: PDP-Laban</p>
+            <p> Educational Background: 
+            Degree of Bachelors of Arts in Communications - Ateneo de Manila University
+            As a Government Official: 
+            Appointed as the Assistant Vice President for Entertainment of the Philippine Amusement and Gaming Corporation (PAGCOR)
+            Publications/Awards: NO DATA</p>
+          <a href="#" class="see-more">View Details</a>     </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Bong Revilla, Ramon Jr. Bautista.png" alt="Senator Portrait">
+        <h3>Bong Revilla, Ramon Jr. Bautista        </h3>
+        <div class="info">
+          <p>Party-List: Lakas-CMD</p>
+            <p> Educational Background: 
+            Bachelor of Arts in Political Science - Ateneo de Manila University
+            As a Government Official: 
+            Senator of the Philippines - 2004 to 2010 and 2013 to 2019
+            Governor of Cavite - 1998 to 2001 and 2001 to 2013
+            Representative of the 2nd District of Cavite - 1992 to 1995
+            Publications/Awards: 
+            Most Outstanding Public Official
+            Senator of the Year
+            Award for Public Service</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Bosita, Bonifacio Laqui.png" alt="Senator Portrait">
+        <h3>Bosita, Bonifacio Laqui        </h3>
+        <div class="info">
+          <p>Party-List: Independent</p>
+            <p>  Educational Background: 
+            Bachelor of Science in Civil Engineering 
+            As a Government Official: NO DATA
+            Publications/Awards: NO DATA</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Brosas, Arlene Duran.png" alt="Senator Portrait">
+        <h3>Brosas, Arlene Duran        </h3>
+        <div class="info">
+          <p>Party-List: Makabayang Koalisyon ng Mamamayan</p>
+            <p>Educational Background: 
+            (College) Philippine Studies - University of the Philippines Diliman
+            As a Government Official: 
+            Member of the Philippine House of Representatives for the 19th Congress
+            Part of 18th Congress under Gabriela Women’s Party-list
+            Congresswoman - 2016 to Present
+            Publications/Awards: 
+            Filed the Anti-Endo Bill
+            Co-authors of the Sexual Orientation and Gender Identity Expression (SOGIE) Equality Bill</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Cabonegro, Roy Jerusalem_.png" alt="Senator Portrait">
+        <h3>Cabonegro, Roy Jerusalem        </h3>
+        <div class="info">
+          <p>Party-List: Democratic Party of the Philippines</p> 
+            <p> Educational Background: 
+            Bachelor of Arts in Political Science - De La Salle University (1994)
+            Bachelor of Science in Business Administration, Major in Marketing Management - College of St. Benilde (1996)
+            As a Government Official:
+            Chairperson, MAKAKALIKASAN (Nature Party Philippines), April 2021 - present
+            Grants and Governance Consultant, Health2Oceans, January 2021- November 2021
+            Writer and consultant, Upwork, December 2020 - November 2021
+            Partnerships and Resource Generation Consultant - Mindoro Biodiversity
+            Conservation Foundation, September 2019 - January 2021
+            Human Rights Observatory Specialist and Team Leader to the CHR, January 2018 - May 2019
+            Policy Research and Advocacy Specialist to the CHR, November 2016 - December 2017
+            Organizational Development Consultant - DENR Manila Bay Coordinating Office, November 2016 - March 2017
+            Policy Officer in Charge of Advocacy Campaigns, South East Asia Regional Initiatives for Community Empowerment, August 2013 - August 2015
+            Organization and Partnership Development Office, International Institute for Rural Reconstruction - Regional Center for Asia, August 2011 to August 2013
+            Regional Facilitator for Asia, Sustainability Watch, January 2007 to July 2011
+            Publications/Awards: 
+            Chairperson, MAKAKALIKASAN (Nature Party Philippines), April 2021 - present</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Capuyan, Allen Arat.png" alt="Senator Portrait">
+        <h3>Capuyan, Allen Arat</h3>
+        <div class="info">
+          <p>Party-List: Partido Pilipino sa Pagbabago
+            Educational Background: 
+            College - Philippine Military Academy (PMA) - 1983
+            Degree - Military Science
+            As a Government Official: 
+            Chairperson, NCIP (Appointed by President Rodrigo Duterte) - 2022-Present
+            Former Executive Director, National Secretariat of the National Task Force to End Local Communist Armed Conflict
+            Presidential Adviser on Indigenous Peoples’ Concerns (under President Rodrigo Duterte)
+            Former Assistant General Manager for security and emergency services, Manila International Airport Authority
+            Former Chief for Operations, Intelligence Service of the Armed Forces of the Philippines (Under President Gloria Macapagal Arroyo)
+            Former Chief, Intelligence Service Unit (ISU) in Davao City
+            Publications/Awards: 
+            Mindanao’s Man of Outstanding Achievement in the Field of Public Service and Leadership Award</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Casino, Teodoro “Teddy” Acevedo .png" alt="Senator Portrait">
+        <h3>Casino, Teodoro “Teddy” Acevedo        </h3>
+        <div class="info">
+          <p>Party-List: Makabayang Koalisyon ng Mamamayan
+            Educational Background: 
+            Sociology - UP Los Banos (1993)
+            Law (quitted after 3 days to pursue activism) - UP
+            As a Government Official: 
+            Representative of Bayan Muna party list (2004-2013)
+            Writer
+            Contributor, Phil. Daily Inquirer (1994-1996)
+            Columnist, Business World, People’s Bagong Taliba, Frontpage, Bulatlat.com
+            Publications/Awards: 
+            Member, Kilusang Mayo Uno (KMU)
+            Secretary General, Bagong Alyansang Makabayan (BAYAN) (1991)
+            President, College Editors Guild of the Phils. (1991)
+            Most Outstanding Congressman, Congress Magazine (2008)
+            UPLB Most Distinguished Alumni for Extension (2002)
+            4th most prolific congressman in the 15th Congress (178 authored and 376 co-authored measures)</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+      
+      <div class="senator-card">
+        <img src="Castro, Francisca “France” Lustina.png" alt="Senator Portrait">
+        <h3>Castro, Francisca “France” Lustina</h3>
+        <div class="info">
+          <p>Party-List: Makabayang Koalisyon ng Mamamayan
+            Educational Background: 
+            BS Education Major in Mathematics - Philippine Normal University (1987)
+            MS Mathematics - PLM (1996)
+            As a Government Official: 
+            2019-Present – Assistant Minority Leader
+            2016-Present – Congresswoman
+            Former Secretary-General, ACT Philippines
+            Former President, Quezon City Public School Teachers Association
+            Publications/Awards: 
+            Arthur Svensson International Prize for Trade Union Rights in Oslo, Norway - 2019
+            PNU Eminent Alumni Award - 2018</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Cayetano, Pilar Juliana “Pia” Schramm.png" alt="Senator Portrait">
+        <h3>Cayetano, Pilar Juliana “Pia” Schramm        </h3>
+        <div class="info">
+          <p>Party-List:  Nacionalista Party
+            Educational Background: 
+            University of the Philippines (Undergraduate), Bachelor of Arts in Economics
+            University of the Philippines (Law Degree), Bachelor of Laws
+            As a Government Official: 
+            (July 2019 – June 2023)
+            Member, Philippine Senate, 18th Congress
+            Chair, Committee on Ways and Means
+            Chair, Committee on Sustainable Development Goals, Innovation, and Futures Thinking
+            Vice Chair, Committee on Finance (Chairperson of the Sub-Committee D on the Budget of Health and Education sectors and Cultural agencies)
+            Vice-Chair, Senate Committee on Health and Demography
+            (July 2016 – June 2019)
+            Member, House of Representatives, 17th Congress
+            Deputy Speaker, House of Representatives
+            Representative, 2nd District of Taguig City July
+            (2004 – June 2016)
+            Member, Philippine Senate, 13th to 16th Congress
+            Chair, Senate Committee on Education, Arts and Culture
+            Chair, Senate Committee on Women, Children, Family Relations and Gender Equality
+            Vice-Chair, Senate Committee on Health and Demography
+            Chair, Senate Oversight Committee on Climate Change
+            Chair, Senate Oversight Committee on Bases Conversion
+            (July 2010 – June 2013)
+            Chair, Senate Committee on Health and Demography
+            Chair, Senate Committee on Youth, Women and Family Relations
+            Chair, Joint Congressional Oversight Committee on the Clean Water Act of 2004
+            (November 2008 – June 2010)
+            Chair, Senate Committee on Social Justice, Welfare and Rural Development
+            (July 2004 – November 2008)
+            Chair, Senate Committee on Environment and Natural Resources
+            Chair, Senate Committee on Health and Demography
+            Co-Chair, Joint Congressional Oversight Committee on the Philippine Clean Air Act of 1999
+            Co-Chair, Joint Congressional Oversight Committee on the Ecological Solid Waste Management Act of 2000
+            Co-Chair, Joint Congressional Oversight Committee on the Philippine Clean Water Act of 2004
+            (July 2004 – July 2007)
+            Assistant Majority Floor Leader, Senate of the Philippines
+            Publications/Awards: 
+            UP Alumni Association Distinguished Alumni Award (2021)
+            Sen. Geronima T. Pecson Award, Federation of Asia-Pacific Women’ Association (2018)
+            UP Gawad Oblation (2017)
+            Distinguished Alumni Awardee (2017)
+            Jade Ribbon Award, Stanford University-based Asian Liver Center (2014)
+            Rising Star Award, Bill and Melinda Gates Foundation (2013)
+            Founder, Pilipinas In Action (March 2020) 
+            Founder, Pinay In Action (April 2015)
+            Founder, Gabriel’s Symphony Foundation, Inc. (December 2001) </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="De Alban, Angelo Castro .png"Senator Portrait">
+        <h3>De Alban, Angelo Castro        </h3>
+        <div class="info">
+          <p>Party-List:  Independent
+            Educational Background: 
+            University of Santo Tomas (Undergraduate) Journalism, Law and Masters of Law. 
+            As a Government Official: NO DATA
+            Publications/Awards: NO DATA</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="D’Angelo, David Delano.png" alt="Senator Portrait">
+        <h3>D’Angelo, David Delano </h3>
+        <div class="info">
+          <p>Party-List: Bunyog Pagkakaisa Party
+            Educational Background: Fernandez Colleges in Baliwag, Bulacan (Undergraduate) BS Accountancy
+            As a Government Official: NO DATA
+            Publications/Awards: NO DATA
+            Affiliations:
+            Publications/Awards: Board of Director, Global Responsibility for Environmental and Ecological Nurturing (GREEN).
+            Director for Sustainability, Arterion Philippines.
+            Director for Multimedia Affairs, Aksyon Kalikasan (Eco Actions PH).
+            Director for Environment Focus of the Rotary Club of Alabang Madrigal Business Park (RCAMBP).
+            Member of the Board (2022-2024), Green Convergence Philippines,
+            Committee Chairperson, Lobbying and Political Affairs of the Upper Marikina Watershed Coalition.
+            Member of the Board, United Filipino Consumers Cooperative
+            Philippine Representative, Asia Pacific Greens Federation (APGF)
+            Philippine Representative, Global Greens
+            Philippine Team Member, World Cleanup Day
+            Communications Director, Peace Tech - Technology for Peace
+            International Communications Officer, Sustainability Watch Network</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="De Guzman, Leodegario “Leody” Quitain.png" alt="Senator Portrait">
+        <h3>De Guzman, Leodegario “Leody” Quitain        </h3>
+        <div class="info">
+          <p>Party-List: Partido Lakas ng Masa (PLM)
+            Educational Background: 
+            Philippine Maritime Institute (Undergraduate) Bachelor of Science in Customs Administration
+            As a Government Official: 
+            Member of the Labor Opposition within the Labor Win Coalition (2019)
+            Publications/Awards: NO DATA</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+      
+      <div class="senator-card">
+        <img src="Dela Rosa, Ronald “Bato” Marapon.png" alt="Senator Portrait">
+        <h3>Dela Rosa, Ronald “Bato” Marapon        </h3>
+        <div class="info">
+          <p>Party-List:  PDP-Laban
+            Educational Background: 
+            Ph.D. Development Administration, University of Southeastern Philippines, 2006
+            Master of Public Administration, University of Southeastern Philippines, 1998
+            Bachelor of Science in Military Science, Philippine Military Academy, 1986
+            Bachelor of Science in Public Administration, Mindanao State University, 1979 – 1982
+            As a Government Official: 
+            Senator of the Republic of the Philippines (July 2019 - Present)
+            Director General, Bureau of Corrections (April 2018 - October 2018)
+            Chief (Director General), Philippine National Police (July 2016 – April 2018)Executive Officer, PNP - Directorate for Human Resource and
+            Doctrine Development (November 2015 – June 2016)
+            Deputy Director for Administration, PNP – Intelligence Group (December 2014 – February 2016)
+            Deputy Director for Operations, PNP – Intelligence Group (June 2014 – October 2014)
+            Chief of Staff, PNP – Intelligence Group ( October 2013 – June 2014)
+            City Director, PNP - Davao City Police Office (PRO11) (February 2012 – October 2013)
+            Chief, PNP - Regional Logistics and Research Development Division, R2 (PRO11) (August 2011 – February 2012)
+            Provincial Director, PNP – Davao Sur Police Provincial Office (PRO11) (September 2009 – August 2011)
+            Provincial Director, Compostela Valley Provincial Office (PRO11) (August 2007 – November 2009)
+            Chief, PNP – Regional Intelligence and Investigation Division, R2 (PRO11) (October 2005 – August 2007)
+            Chief, Unit Training Program Division, PNP – Directorate for Human Resource and Doctrine Development (August 2003 – October 2005)
+            Chief, PAOCTF, Davao Satellite Office (1998 – 2001)
+            Battalion Commander, PNP Regional Mobile Group (PRMG) (1997 – 1999)
+            (1996 – 1997)
+            Stn Comdr, PS6, Bunawan Davao City
+            Chief, Intelligence Division, Davao City Police Office
+            Group Commander, City Mobile Group, Davao City Police Office
+            Stn Comdr, PS4, Sasa, Davao City (1992 – 1996)
+            Chief of Police, Bansalan Municipal Police Station, Davao del Sur (1990 – 1991)
+            Ex-O, 413rd PC Coy, Tandag, Surigao del Sur ( 1988 - 1989)
+            Commanding Officer, 11 RSAF ( 1986 – 1988)
+            Publications/Awards: 
+            “Bintang Bhayangkara Utama” or Medal of Honor
+            Outstanding Law Enforcement Award
+            Gusi Peace Prize
+            Vanguard of Peace and Order Award
+            Cavalier Award for Outstanding Performance for Police Operations
+            PNP Medalya ng Pambihirang Paglilingkod or Special Service Medal
+            PNP Achievement Award in the Field of Police Operations
+            PNP Senior PCO of the Year for Operations
+            PAOCTF Satellite Office of the Year
+            PRMG of the Year</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Doringo, Eufemia “Mimi” Pet.png" alt="Senator Portrait">
+        <h3>Doringo, Eufemia “Mimi” Pet        </h3>
+        <div class="info">
+          <p>Party-List: Makabayang Koalisyon ng Mamamayan
+            Educational Background: NO DATA
+            As a Government Official: NO DATA
+            Publications/Awards: NO DATA</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Escobal, Arnel Bondilles_.png" alt="Senator Portrait">
+        <h3>Escobal, Arnel Bondilles        </h3>
+        <div class="info">
+          <p>Party-List: Partido Maharlika
+            Educational Background: 
+            Philippine Military Academy (PNPA) Hinirang Class of 1987,Military Science
+            Aquinas University of Legazpi, Law School
+            As a Government Official: 
+            Former Director, PNP Directorate for Investigation and Detective Management (DIDM)
+            Former Director, PNP Directorate for Integrated Police Operations – Eastern Mindanao
+            Former Director, PNP Regional Office 5 (Bicol)
+            Publications/Awards: NO DATA</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Espiritu, Renecio Jr. Santos.png" alt="Senator Portrait">
+        <h3>Espiritu, Renecio Jr. Santos        </h3>
+        <div class="info">
+          <p>Party-List: Partido Lakas ng Masa (PLM)
+            Educational Background:
+            Ateneo de Manila University, Communication Arts (1977)
+            Ateneo de Manila University, Law School
+            As a Government Official: NO DATA
+            Publications/Awards: NO DATA
+            Affiliations:
+            President, ukluran ng Manggagawang Pilipino
+            Board of Trustees Member, Freedom from Debt Coalition
+            Former National President, Solidarity of Unions in the Philippines for Empowerment and Reforms (SUPER) Federation
+            Member, Integrated Bar of the Philippines (IBP)</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Floranda, Modesto Toque .png" alt="Senator Portrait">
+        <h3>Floranda, Modesto Toque  </h3>
+        <div class="info">
+          <p>Party-List: Makabayang Koalisyon ng Mamamayan
+            Educational Background: NO DATA
+            As a Government Official: NO DATA
+            Publications/Awards: NO DATA</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Gamboa, Marc Louie Santos_.png" alt="Senator Portrait">
+        <h3>Gamboa, Marc Louie Santos         </h3>
+        <div class="info">
+          <p>Party-List: Independent
+            Educational Background: NO DATA
+            As a Government Official: NO DATA
+            Publications/Awards: NO DATA
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Go, Christopher Lawrence Tesoro.png" alt="Senator Portrait">
+        <h3>Go, Christopher Lawrence Tesoro        </h3>
+        <div class="info">
+          <p>Party-List: PDP-Laban
+            Educational Background: 
+            Ateneo de Davao University (Undergraduate), Bachelor's Degree in Marketing
+            As a Government Official: 
+            Senator of the Republic of the Philippines (2019 - Present)
+            Served in the Cabinet of President Rodrigo Duterte as a Special Assistant to the President and Head of the Presidential Management (June 2016 - October 2018)
+            Executive Assistant of then Davao City 1st District Representative  (1988)
+            Publications/Awards: 
+            Legacy Award of Excellence in Public Service (2023)
+             “Outstanding Senator” during the 5th National Convention of the Public Attorney's Office (PAO)
+             Supportive Legislator Award sa Cooperative Development Authority (CDA) Gawad Parangal Awards
+            Public Servant Leaders Award by Rising Tigers Magazine
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Gonzales, Norberto Borja.png" alt="Senator Portrait">
+        <h3>Gonzales, Norberto Borja         </h3>
+        <div class="info">
+          <p>Party-List:  Partido Demokratiko Sosyalista ng Pilipinas
+            Educational Background: Ateneo de Davao University, Pre-Medicine
+            As a Government Official: 
+            Secretary of National Defense
+            National Security Adviser under 14th President Gloria Macapagal Arroyo
+            Publications/Awards: NO DATA
+            Affiliations:
+            Chairperson of the Partido Demockratiko Sosyalista ng Pilipinas (PDSP).
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Hinlo, Jesus Jr. Villanueva.png" alt="Senator Portrait">
+        <h3>Hinlo, Jesus Jr. Villanueva        </h3>
+        <div class="info">
+          <p>Party-List: PDP-Laban
+            Educational Background: 
+            Bachelor of Arts Major in Political Science, 1992 (Undergraduate)
+            Bachelor of Laws, 1999 (Post Graduate) 
+            As a Government Official: NO DATA
+            Publications/Awards: NO DATA
+            Affiliations:
+             PDP Laban’s Deputy Secretary General for Visayas 
+            Co-founded the Philippine Development Movement (PDM)
+             first president of the Partido Federal ng Pilipinas (PFP) 
+            Director of Land Bank of the Philippines (2018)
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Honasan, Gregorio “Gringo” Ballesteros _.png" alt="Senator Portrait">
+        <h3>Honasan, Gregorio “Gringo” Ballesteros         </h3>
+        <div class="info">
+          <p>Party-List: Reform PH-People’s Party
+            Educational Background: 
+            Philippine Military Academy, Bachelor of Science (1971)
+            As a Government Official: 
+            Secretary of Department of Information and Communications Technology
+            Senator of the Republic of the Philippines (1995)
+            Commandant of Special Operations School at the Philippine Army Training Command in Fort Magsaysay, Nueva Ecija (1986 - 1987)
+            Publications/Awards: 
+            Distinguished Stars of Counter Insurgency Operations Against Economic Saboteurs and Drug Trafficker
+            Old Cross Medals for Gallantry in Action in the Battles of Lebak, Jolo and Zamboanga (1973 - 1974)
+            Ten Outstanding Young Men for Military Service by the Jaycees
+            Distinguished Conduct Star for the EDSA Revolution and the Presidential Government Medal (1986)
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Jose, Relly Jr. Nufable.png" alt="Senator Portrait">
+        <h3>Jose, Relly Jr. Nufable        </h3>
+        <div class="info">
+          <p>Party-List: Kilusang Bagong Lipunan
+            Educational Background: 
+            John B. Lacson Foundation Maritime University
+            As a Government Official: NO DATA
+            Publications/Awards: NO DATA
+            Affiliations: 
+            President / CEO at GMM Global Maritime Manila Inc
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Lacson, Panfilo “Ping” Morena_.png" alt="Senator Portrait">
+        <h3>Lacson, Panfilo “Ping” Morena        </h3>
+        <div class="info">
+          <p>Party-List: Independent
+            Educational Background: 
+            Philippine Military Academy (Matatag Class of 1971)
+            Pamantasan ng Lungsod ng Maynila (Master in Government Management in 1996)
+            Pamantasan ng Lungsod ng Maynila, Doctor of Laws, Honoris Causa (March 2019)
+            As a Government Official: 
+            Senator (2001 to 2013; 2016 to present)
+            Presidential Assistant on Rehabilitation and Recovery (2013 to 2015)
+            Chief, Philippine National Police (1999 to 2001)
+            Chief, Presidential Anti-Organized Crime Task Force (1998 to 2001)
+            Project Officer, Special Project Alpha (1996 to 1997)
+            Chief, Task Force Habagat, PACC (1992 to 1995)
+            Provincial Director, Laguna, PC (February to July 1992)
+            Commander, Cebu Metrodiscom (1989 to 1992)
+            Provincial Commander, Isabela PC (1988 to 1989)
+            PC-INP Anti Carnapping Task Force (1986 to 1988)
+            Metrocom Intelligence and Security Group (1971 to 1986)
+            Publications/Awards: 
+            Philippine Military Academy, the Lifetime Achievement Award (2022)
+            Philippine Constabulary Metropolitan Command (Metrocom)'s Intelligence and Security Group (MISG) from 1971 to 1986.
+            PC-INP Provincial Commander of Isabela (1986 - 1988)
+            PC-INP Provincial Commander of Cebu Metropolitan District Command (Metrodiscom) from (1989 - 1992)
+            Provincial Director of Laguna (1992)
+            Chief of the PNP (November 18, 1999)
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Lambino, Raul Loyola_.png" alt="Senator Portrait">
+        <h3>Lambino, Raul Loyola       </h3>
+        <div class="info">
+          <p>Party-List:  PDP-Laban
+            Educational Background: 
+            University of Pangasinan, Bachelor of Arts in Political Science (1981)
+            University of Pangasinan, Bachelor of Laws degree (1986)
+            As a Government Official: 
+            Consultant and Coordinator for the Philippine House of Representatives contingent to the Commission on Appointments
+            Publications/Awards: 
+            Ambassador for Peace at the Inter-religious and International Confederation for World Peace and the Interreligious and International Peace Council.
+            Life Member of the Philippine Constitution Association (Philconsa), and an active member of the ASEAN Law Association and the Integrated Bar of the Philippines.
+            Chairman of Green Smiley through Green Team Pilipinas
+            Member of Alpha Phi Omega-Alpha Gamma Chapter
+            Administrator and Chief Executive Officer of the Cagayan Economic Zone Authority
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+      
+      <div class="senator-card">
+        <img src="Lapid, Manuel “Lito” Mercado.png" alt="Senator Portrait">
+        <h3>Lapid, Manuel “Lito” Mercado       </h3>
+        <div class="info">
+          <p>Party-List:Nationalist People's Coalition (NPC)
+            Educational Background: 
+            Completed primary education at Porac Central School.
+            Finished secondary education at St. Catherine Academy.
+            he did not complete a college degree
+            As a Government Official:
+            Senator of the Philippines: 2004–2010, 2010–2016, 2019 –present
+            Governor of Pampanga: 1995–2004
+            Vice Governor of Pampanga: 1992–1995
+            Publications/Awards: 
+            Free Legal Assistance Act (Republic Act No. 9999).
+            Biometrics Law (Republic Act No. 10367).
+            Expanded Senior Citizens Act (Republic Act No. 10645).
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Lee, Wilbert Manoy Te.png" alt="Senator Portrait">
+        <h3>Lee, Wilbert "Manoy" Te      </h3>
+        <div class="info">
+          <p>Party-List: AGRI Party-List Aksyon Demokratiko
+            Educational Background: 
+            Bachelor of Science in Business Administration from the University of Santo Tomas in 1991
+            As a Government Official:
+            Representative of the AGRI Party-List in the House of Representatives since 2022.
+            Participates in 24 Congressional Committees and has authored over 468 bills and resolutions
+            Publications/Awards: 
+            Most Outstanding Sorsogueño Award (1997),
+            Halyao Award for Bicolano Businessman of the Year (2006),
+            Rokyaw Ibalnong Award for Business and Industry (2011
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+      
+      <div class="senator-card">
+        <img src="Lidasan, Amirah Ali (1).png" alt="Senator Portrait">
+        <h3>Lidasan, Amirah Ali      </h3>
+        <div class="info">
+          <p>Party-List: Makabayang Koalisyon ng Mamamayan (Makabayan Coalition).
+            Educational Background: 
+            Bachelor's degree in Journalism from the University of the Philippines, College of Mass Communication.
+            Active student leader and president of the Union of Journalists of the Philippines (UJP) during her studies at UP.
+            
+            As a Government Official:
+            Currently serves as the Secretary-General of the Moro-Christian People’s Alliance.
+            Co-chairperson of Sandugo – Movement of Moro and Indigenous Peoples for Self-Determination.
+            Publications/Awards: 
+            Notable for her advocacy in human rights and indigenous peoples’ self-determination.
+            Recognized for her grassroots work with various minority groups and Moro communities, addressing systemic discrimination and promoting their rights.</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Marcos, Maria Imelda Imee Romualdez.png" alt="Senator Portrait">
+        <h3>Marcos, Maria Imelda "Imee" Romualdez        </h3>
+        <div class="info">
+          <p>Party-List: Nacionalista Party and Hugpong ng Pagbabago
+            Educational Background: 
+            Bachelor of Arts in Political Science from the University of the Philippines
+            Master of Business Administration (MBA) from the University of the Philippines College of Business Administration​
+            
+            As a Government Official:
+            Senator of the Philippines, from 2019 to present
+            Governor of Ilocos Norte, from 2010 to 2019
+            Member of the House of Representatives, representing Ilocos Norte's 2nd District from 1998 to 2007​
+            Publications/Awards: 
+            Chair of various Senate Committees including Economic Affairs and Electoral Reforms​.
+            Leadership as Governor of Ilocos Norte, where she initiated numerous infrastructure and social programs
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Martinez, Eric Morales.png" alt="Senator Portrait">
+        <h3>Martinez, Eric Morales    </h3>
+        <div class="info">
+          <p>Party-List: Independent (former affiliations include PDP, Liberal Party, NPC, and Lakas-CMD)​
+            Educational Background: 
+            Bachelor of Science in Business Administration from the University of Santo Tomas​.
+            Completed primary and secondary education at Notre Dame of Greater Manila​
+            As a Government Official: 
+            Current Position: Representative of Valenzuela's 2nd District (2016–present), serving his third term​.
+            Deputy Speaker of the House of Representatives (2020–2022)​
+            Vice Mayor of Valenzuela (2007–2016)​.
+            City Councilor, Valenzuela's 2nd District (2001–2007)​.
+            Barangay Kagawad and Sangguniang Kabataan member in Barangay Marulas, Valenzuela (1993–2001)
+            Publications/Awards: 
+            "Basketball Capital of the Philippines"​
+            public health, climate resilience, and sports initiatives
+            Philippine National Red Cross (Valenzuela Chapter)
+            .</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Mata, Dr. Richard Tesoro.png" alt="Senator Portrait">
+        <h3>Mata, Dr. Richard Tesoro     </h3>
+        <div class="info">
+          <p>Party-List: Independent
+            Educational Background: Doctor of Medicine (pediatrician by profession)
+            As a Government Official:  NO DATA
+            Publications/Awards: NO DATA
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Matula, Jose Sonny.png" alt="Senator Portrait">
+        <h3> Matula, Jose Sonny    </h3>
+        <div class="info">
+          <p>Party-List: Workers and Peasants Party (WPP)
+            Educational Background:  NO DATA
+            As a Government Official: NO DATA
+            Publications/Awards: NO DATA
+          .</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Maza, Liza.png" alt="Senator Portrait">
+        <h3>  Maza, Liza        </h3>
+        <div class="info">
+          <p>Party-List: Makabayang Koalisyon ng Mamamayan (MAKABAYAN)
+            Educational Background: NO DATA
+            As a Government Official: 
+            Former Representative of Gabriela Partylist (2001-2010)​.
+            Former Undersecretary of the Department of Social Welfare and Development (DSWD)
+            
+            Publications/Awards: 
+            Anti-Trafficking in Persons Act of 2003
+            Anti-Violence Against Women and Children Act (Anti-VAWC)
+            Juvenile Justice Act​
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Mendoza, Heidi Lloce.png" alt="Senator Portrait">
+        <h3>  Mendoza, Heidi Lloce   </h3>
+        <div class="info">
+          <p>Party-List: Independent 
+            Educational Background: 
+            Bachelor of Science in Commerce, major in Accounting from Sacred Heart College, Lucena City (1983)​
+            Master of Public Administration (MPA) from the University of the Philippines Diliman​.
+            National Security Administration (MNSA) from the National Defense College of the Philippine
+            As a Government Official: 
+            Commissioner and Officer-in-Charge of the Commission on Audit (COA), Philippines (2011–2015)​.
+            Undersecretary-General for the United Nations Office of Internal Oversight Services (2015–2019)
+            Publications/Awards: 
+            military (involving former military comptroller Carlos Garcia)
+            major anti-corruption efforts
+            "Sundalo Una sa Lahat"
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+
+      </div>
+
+      <div class="senator-card">
+        <img src="Montemayor, Jose Jr. Cabrera.png" alt="Senator Portrait">
+        <h3>   Montemayor, Jose Jr. Cabrera  </h3>
+        <div class="info">
+          <p>Party-List: Partido Pederal ng Maharlika (PPM)​
+            Educational Background: 
+            Doctor of Medicine and Lawyer
+            As a Government Official: 
+            Former presidential candidate (2022)​ .
+            Running for senator in the 2025 elections​
+            Publications/Awards: 
+            NO DATA
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Norman, Cordero Marquez.png" alt="Senator Portrait">
+        <h3>  Norman, Cordero Marquez    </h3>
+        <div class="info">
+          <p>Party-List:  Independent candidate
+            Educational Background: NO DATA
+            As a Government Official: 
+            run for public office as an independent candidate for the Philippine Senate in both the 2019 and 2022 elections
+            Publications/Awards: NO DATA
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Olivar,  Jose Jessei Dela Calsada.png" alt="Senator Portrait">
+        <h3>  Olivar,  Jose Jessei Dela Calsada   </h3>
+        <div class="info">
+          <p>Party-List: Independent
+            Educational Background: NO DATA
+            As a Government Official: NO DATA
+            Publications/Awards: NO DATA
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Ong, Dr. Willie.png" alt="Senator Portrait">
+        <h3>  Ong, Dr. Willie   </h3>
+        <div class="info">
+          <p>Party-List: Aksyon Demokratiko
+            Educational Background: 
+            Master in Public Health, University of the Philippines Manila (2002)
+            College of Medicine, De La Salle University (1992)
+            Bachelor of Science in Botany, University of the Philippines (1988)​
+            
+            As a Government Official: 
+            Consultant, Department of Health (2010-2014)​
+            vice-presidential candidate for Aksyon Demokratiko in 2022​
+            Publications/Awards: 
+            medical advice and articles on health topics,  health expert on programs like Salamat Dok on ABS-CBN​
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Pacquiao,  Emmanuel Manny Dapidran.png" alt="Senator Portrait">
+        <h3>  Pacquiao,  Emmanuel "Manny" Dapidran   </h3>
+        <div class="info">
+          <p>Party-List: Partido Federal ng Pilipinas (PFP)
+            Educational Background: NO DATA
+            As a Government Official: 
+            Congressman of Sarangani Province (2010-2013)
+            Senator of the Philippines (2016-2022)​
+            Publications/Awards: NO DATA
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Pangilinan, Francis Pancratius “Kiko”.png" alt="Senator Portrait">
+        <h3> Pangilinan, Francis Pancratius “Kiko”  </h3>
+        <div class="info">
+          <p>Party-List: Liberal Party of the Philippines
+
+            Educational Background: 
+            La Salle Green Hills in 1977 and 1981
+            Bachelor of Arts in English, Major in Comparative Literature degree at the University of the Philippines (UP) Diliman
+            Bachelor of Laws degree from the UP College of Law 1986-1987
+            Master of Public Administration degree at Harvard Kennedy School 1997
+            As a Government Official: 
+            1988: Elected as the councilor of Quezon City from the 4th district.  
+            2001: Elected to the Senate; re-elected in 2007.  
+            2004: First elected as Senate Majority Leader.  
+            2007: Re-elected as Senate Majority Leader.  
+            2010: Chaired the Senate Committee on Agriculture.  
+            May 2014: Appointed as the Presidential Assistant for Food Security and Agricultural Modernization.  
+            2016: Appointed interim president of the Liberal Party.  
+            
+            Publications/Awards: 
+            Organic Agriculture Act of 2010, the Sagip Saka Act, and the GMRC and Values Education Act
+            Ten Accomplished Youth Organizations (TAYO) Awards in 2002
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Quiboloy, Apollo Carreon.png" alt="Senator Portrait">
+        <h3>  Quiboloy, Apollo Carreon   </h3>
+        <div class="info">
+          <p>Party-List: WPP
+            Educational Background: NO DATA
+            As a Government Official: NO DATA
+            Publications/Awards: No data
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Querubin, Ariel Porfirio Oliva.png" alt="Senator Portrait">
+        <h3> Querubin, Ariel Porfirio Oliva  </h3>
+        <div class="info">
+          <p>Party-List: Nacionalista Party
+
+            Educational Background: 
+            Philippine Military Academy (PMA) in 1979.
+            As a Government Official: no data
+            Publications/Awards:
+            Distinguished Conduct Stars
+            Distinguished Service Stars
+            Gold Cross Medals
+            Military Merit Medals
+            .</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+      
+
+      <div class="senator-card">
+        <img src="Ramos, Danilo Hernandez.png" alt="Senator Portrait">
+        <h3>  Ramos, Danilo Hernandez   </h3>
+        <div class="info">
+          <p>Party-List: Makabayang Koalisyon ng Mamamayan
+            Educational Background: no data
+            As a Government Official: no data
+            Publications/Awards:no data
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Revillame, Wilfredo.png" alt="Senator Portrait">
+        <h3>  Revillame, Wilfredo  </h3>
+        <div class="info">
+          <p>Party-List: tutok to win partylist
+            Educational Background:no data
+            As a Government Official: no data
+            Publications/Awards:
+            Promote the Tutok To Win Party-List of Sam Verzosa
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Rodante,  Dizon Marcoleta.png" alt="Senator Portrait">
+        <h3>  Rodante,  Dizon Marcoleta   </h3>
+        <div class="info">
+          <p>Party-List: independent
+            Educational Background: NO DATA
+            As a Government Official: 
+            House of Representatives for the SAGIP party-list starting in 2019
+            deputy speaker of the House since 2019​
+            Publications/Awards: 
+            the budget of the Commission on Human Rights to only P1,000 in 2017
+            .</p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Rodriguez, Victor (1).png" alt="Senator Portrait">
+        <h3>  Rodriguez, Victor  </h3>
+        <div class="info">
+          <p>Party-List: independent
+            Educational Background:
+            Law Degree - University of Santo Tomas in Manila
+            National University of Singapore (NUS) 
+            As a Government Official: 
+            2022: Executive Secretary under President Ferdinand Marcos Jr.
+            2022: Chief of Staff of President Marcos.
+            Barangay Captain and Councilman of Barangay Sacred Heart, Quezon City.
+            Special Assistant in Quezon City's Business Permits and Licensing Office under Mayor Feliciano Belmonte Jr.
+            Officer-in-Charge for the Community Relations Office in Quezon City​
+            
+            Publications/Awards: 
+            Co-founder of the tabloid Saksi Ngayon.
+            Recognized as President of the Quezon City Trial Lawyers League
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Sahidulla, Nur-Ana Indanan.png" alt="Senator Portrait">
+        <h3>  Sahidulla, Nur-Ana Indanan  </h3>
+        <div class="info">
+          <p>PParty-List: independent
+            Educational Background:no data
+            As a Government Official: 
+            mayor of Banguingui Sulu for two consecutive terms from 1998 to 2004
+            chairwoman of the Philippine National Red Cross since 2004
+            2008, vice governor, from the Abu Sayyaf militant group.
+            Publications/Awards:no data            
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Salvador, Phillip Reyes.png" alt="Senator Portrait">
+        <h3>  Salvador, Phillip Reyes  </h3>
+        <div class="info">
+          <p>Party-List: PDP-Laban
+            Educational Background:no data
+            As a Government Official: 
+            Vice Governor of Bulacan as the running mate of Josefina Dela Cruz in the 2016 local election
+            Publications/Awards:no data
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Singson, Luis.png" alt="Senator Portrait">
+        <h3>  Singson, Luis        </h3>
+        <div class="info">
+          <p>Party-List: independent
+            Educational Background: no data
+            As a Government Official: 
+            2010 Philippine presidential election 
+            governor of Ilocos Sur for multiple terms.
+             2019, mayor of Narvacan under the local party Bileg Ti Ilokano.
+            June 19, 2021, Singson joined the Nationalist People’s Coalition.
+            Publications/Awards:no data
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Sotto, Vicente III.png" alt="Senator Portrait">
+        <h3>  Sotto, Vicente III  </h3>
+        <div class="info">
+          <p>Party-List: Nationalist People’s Coalition (NPC)
+            Educational Background: 
+            Bachelor of Arts in English, Colegio de San Juan de Letran, Manila
+            
+            As a Government Official: 
+            Vice Mayor of Quezon City: 1988–1992.
+            Senator of the Philippines:
+            First two terms: 1992–2004.
+            Returned: 2010–2022.
+            Served as Senate President: 2018–2022.
+            Chairman of the Dangerous Drugs Board: 2008–2009​
+            
+            Publications/Awards:
+            Wrote iconic songs like "Magkaisa," an anthem of the 1986 People Power Revolution, and received the Catholic Mass Media Award.
+            International Narcotics Enforcement Officers Association.
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Tapado, Michael Balais.png" alt="Senator Portrait">
+        <h3>  Tapado, Michael Balais  </h3>
+        <div class="info">
+          <p>Party-List: Partido Maharlika
+
+            Educational Background: no data
+            As a Government Official:  no data
+            Publications/Awards: no data
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Tolentino, Francis Ng .png" alt="Senator Portrait">
+        <h3>  Tolentino, Francis Ng  </h3>
+        <div class="info">
+          <p>Party-List:  PDP Laban party
+            Educational Background:
+            Master of Laws (LLM) in Constitutional Law from the University of Michigan Law School
+            Master of Laws (LLM) in Public International Law (with Merit, Second Honors) from the University of London
+            Master of Laws (LLM) in Corporation Law from Columbia Law School
+            Master on National Security Administration (MNSA) from the National Defense College of the Philippines, ranked 6th out of 55 graduates
+            Bachelor of Laws (LLB) from Ateneo de Manila University
+            Passed the Philippine Bar Exams (1984) 
+            As a Government Official: 
+            OIC City Mayor of Tagaytay (1986)
+            Elected City Mayor of Tagaytay for three consecutive terms (1995-2004)
+            President, League of Cities of the Philippines (2001)
+            Chairman, Metropolitan Manila Development Authority (MMDA) (2010-2015)
+            Presidential Adviser on Political Affairs (2017-2018)
+            Elected Senator of the Philippines (2019-present)
+            Chair of the Senate Committees on Local Government, and Urban Planning, Housing, and Resettlement​
+            Publications/Awards: 
+            Across the Oceans: United States and Philippine Overseas Voting Laws (2021)
+            Pandemic Handbook for Philippine Local Governments (2020)
+            Philippine Cities Creation (1999)
+            Soul of Freedom (2006)
+            Metro Manila Skybridge: Link…Dream…Tomorrow (2012)
+            Civil Will: His Own Words (2014)
+            University’s Award of Highest Honor from Soka University (1998)
+            Armed Forces of the Philippines Reserve Officer of the Year (2001)
+            Most Outstanding City Mayor of the Philippines (multiple times)​
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Tulfo, Bienvenido.png" alt="Senator Portrait">
+        <h3>  Tulfo, Bienvenido Teshiba   </h3>
+        <div class="info">
+          <p>Party-List: Independent
+            Educational Background: no data
+            As a Government Official:  no data
+            Publications/Awards:
+            produce BITAG as a block timer. Its official launch was on September 14, 2002,
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Tulfo, Erwin.png" alt="Senator Portrait">
+        <h3>  Tulfo, Erwin Teshiba  </h3>
+        <div class="info">
+          <p>Party-List: Anti-Crime and Terrorism Community Involvement Support (ACT-CIS)
+            Educational Background: NO DATA
+            As a Government Official: 
+            Secretary of the Department of Social Welfare and Development (DSWD) in 2022​
+            Congressman representing ACT-CIS Party List, sworn in as a full-fledged member in May 2023​
+            Publications/Awards: no data
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text --></div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Valbuena, Mario Jr. .png" alt="Senator Portrait">
+        <h3>  Valbuena, Mario Jr.  </h3>
+        <div class="info">
+          <p>Party-List:Partido Maharlika" (PM)
+            Educational Background: no data
+            As a Government Official: 
+            Governor of Catanduanes from 2001 to 2004​
+            Publications/Awards: no data
+            </p>
+          <a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+          <div class="close-button">X</div>
+      </div>
+
+      <div class="senator-card">
+        <img src="Villar, Camille Aguilar .png" alt="Senator Portrait">
+        <h3>  Villar, Camille Aguilar  </h3>
+        <div class="info">
+          <p>Party-List: Nacionalista Party
+            Educational Background:
+            Bachelor’s degree in Business Management from Ateneo de Manila University.
+            Master of Business Administration from IESE Business School in Barcelona (2014)​
+            
+            As a Government Official: 
+            Elected as Congresswoman for Las Piñas in 2019 and re-elected in 2022.
+            Appointed Deputy Speaker in 2021
+            
+            Publications/Awards:
+            Government Hero of the Year" and awarded "Female Executive of the Year"
+            </p>
+<a href="#" class="see-more">View Details</a> <!-- Changed text -->        </div>
+<div class="close-button">X</div>
+      </div>
+
+      
+    <!-- More senator cards can be added here -->
+  </section>
+
+  <section id="about-us" style="padding: 50px; background-color: #e4e4e4; text-align: center;">
+    <h2 style="font-size: 3rem; margin-bottom: 20px;">About Us</h2>
+    <p style="font-size: 1.8rem; max-width: 900px; margin: 0 auto; line-height: 2;">
+    <p>
+      Hello, everyone! We’re excited to have you here! This website is designed to help you get to know the candidates running for senator. We’ve provided key information about each individual to assist you in making an informed decision. Take your time, read carefully, and choose the candidate who best aligns with your values and vision for the future.  
+      VOTE WISELY!
+    </p>
+    <p style="font-size: 1.8rem; max-width: 900px; margin: 20px auto 0; line-height: 2;">
+      Contact us: 
+      <a href="mailto:info@senatorialelection2025.com" style="color: #06598d; text-decoration: none; font-weight: bold;">info@senatorialelection2025.com</a>
+    </p>
+  </section>
+  
+
+  <script>
+    // JavaScript for expanding senator cards on click
+    document.querySelectorAll('.see-more').forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();  // Prevent the default action of the link
+        const card = button.closest('.senator-card');
+        card.classList.toggle('expanded');  // Toggle the expansion of the card
+      });
+    });
+  </script>
+
+<script>
+  document.getElementById('search-bar').addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    const cards = document.querySelectorAll('.senator-card');
+    cards.forEach(card => {
+      const name = card.querySelector('h3').innerText.toLowerCase();
+      if (name.includes(query)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+<script>
+    // Close Button Event Listener
+    document.addEventListener('click', function (event) {
+      if (event.target.classList.contains('close-button')) {
+        const expandedCard = event.target.closest('.senator-card.expanded');
+        if (expandedCard) {
+          expandedCard.classList.remove('expanded');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
